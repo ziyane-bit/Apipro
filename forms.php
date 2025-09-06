@@ -4,8 +4,14 @@ class user_forms{
         ?>
         <h2>Signup Form</h2>
         <form action='submit_signup.php' method='post'>
-            Username: <input type='text' name='username'><br>
-            Password: <input type='password' name='password'><br>
+
+            <label for='username'>Username:</label>
+            <input type='text' id='username' name='username' required><br><br>
+            <label for='email'>Email:</label>
+            <input type='email' id='email' name='email' required><br><br>
+            <label for='password'>Password:</label>
+            <input type='password'id='password' name='password' required><br><br>
+
             <input type='submit' value='Sign Up'>
     </form>
     <?php
