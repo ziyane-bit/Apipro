@@ -1,7 +1,7 @@
 <?php
 class forms {
 
-    private function submit_buttom($value){
+    private function submit_button($value){
         echo "<input type = 'submit' value = '{$value}'>";
     }
 
@@ -18,6 +18,9 @@ class forms {
             <input type='password'id='password' name='password' required><br><br>
 
             <?php $this->submit_button('sign Up'); ?> <a href="login.php"> Already have an account? Log in </a>
+
+
+
 
     </form>
     <?php

@@ -1,17 +1,26 @@
 <?php
 class layouts {
 
-    public function heading() {
-    echo"Welcome to BBIT DevOps";
+public function heading($conf) {
+
+    echo "Welcome to " . $conf['site_name'] . "!";
 }
 
-public function welcome() {
-    echo"<p>This is a new semester.</p>";
+public function welcome($conf) {
+
+    echo "<p>This is a new semester.</p>";
 
 }
 
-public function footer() {
-    echo"<footer>contact us at <a href='mailto:info@bbit.edu?subject=Admission%20inquery&body=Hello,%20I%20would%20like%20more%20information%please'>info@bbit.edu</a></footer>";
+public function footer($conf) {
+
+    echo"<footer>
+    
+    copyright &copy; " . date("Y") . " " . $conf['site_name'] . "
+
+    </br></br>contact us at <a href='mailto:{$conf['site_email']}'> {$conf['site_email']}</a></footer>";
 }
 
 }
+
+//how to do subject to email using configuration
