@@ -8,7 +8,7 @@ public function heading($conf) {
 
 public function welcome($conf) {
 
-    echo "<p>This is a new semester.</p>";
+    echo "<p>Empowering your transfers, Empowering you</p>";
 
 }
 
@@ -22,5 +22,3 @@ public function footer($conf) {
 }
 
 }
-
-//how to do subject to email using configuration
