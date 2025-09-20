@@ -20,7 +20,7 @@ $conf['db_name'] = "APIPRO";
 //Email configuration
 $conf['mail_type'] = "smtp";//Options: smtp, sendmail, mail
 $conf['smtp_host'] = "smtp.gmail.com";
-$conf['smtp_user'] = " "; // Input value when needed (not safe to be on Github)
-$conf['smtp_pass'] = " "; // Input value when needed
+$conf['smtp_user'] = "ziyane.tatiana@strathmore.edu"; // Input value when needed (not safe to be on Github)
+$conf['smtp_pass'] = "zplw zddd zvvz ufxl"; // Input value when needed
 $conf['smtp_port'] = 465;
 $conf['smtp_secure'] = "ssl";

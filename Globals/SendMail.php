@@ -9,8 +9,8 @@ class SendMail{
     public function Send_Mail($conf, $mailCnt){
        
 
-//Load Composer's autoloader (created by composer, not included with PHPMailer)
-require 'Plugins/PHPMailer/vendor/autoload.php';
+require_once __DIR__ . '/../Plugins/PHPMailer/vendor/autoload.php'; // path
+
 
 //Create an instance; passing 'true' enables exceptions
 $mail = new PHPMailer(true);
@@ -48,9 +48,10 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = $mailCnt['subject'];
-    $mail->Body    = "
-
-            <p>Howdy {$userName},</p>
+    $mail->Body    = 
+"<html>
+  <body>
+    <p>Howdy {$userName},</p>
 
                 <p>Thank you for joining <b>Klink</b>!</p>
                 <p>We are excited to have you on board.<br>
@@ -59,7 +60,13 @@ try {
                 <p>Together, we are Connecting Africa.</p>
                 <p>— Klink Team</p>
     
-    ";
+</body>  
+</html>"; //missing files/error because of loading PHPMailer through Composer’s autoloader. (standard)
+
+
+//echo "<hr><h3>Debug Body:</h3>";
+//echo $mail->Body;
+//exit;
 
     $mail->send();
     echo 'Email has been sent';

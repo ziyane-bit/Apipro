@@ -1,5 +1,7 @@
 <?php
-require_once 'ClassAutoLoad.php';
+
+require_once __DIR__ . '/../../ClassAutoLoad.php';
+require_once __DIR__ . '/../../conf.php';
 
 // Prepare email content
 $mailCnt = [
@@ -10,5 +12,10 @@ $mailCnt = [
     'subject'   => 'Your trusted transfer partner, klink'
 ];
 
-// Call SendMail class (handles validation, greeting, and body automatically)
+// instantiate SendMail class 
+$objSendMail = new SendMail();
+//call (handles validation, greeting, and body automatically)
 $ObjSendMail->Send_Mail($conf, $mailCnt);
+
+
+//Instead of duplicating email code in here, standardize to use the SendMail class via try_mail.php.
