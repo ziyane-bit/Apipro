@@ -1,47 +1,14 @@
 <?php
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+require_once 'ClassAutoLoad.php';
 
-//Load Composer's autoloader (created by composer, not included with PHPMailer)
-require 'vendor/autoload.php';
+// Prepare email content
+$mailCnt = [
+    'name_from' => 'Tatiana ziyane',
+    'mail_from' => 'ziyane.tatiana@strathmore.edu',
+    'name_to'   => 'Oeppa podcast',
+    'mail_to'   => 'oeppapodcast@gmail.com',
+    'subject'   => 'Your trusted transfer partner, klink'
+];
 
-//Create an instance; passing `true` enables exceptions
-$mail = new PHPMailer(true);
-
-try {
-    //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    $mail->isSMTP();                                            //Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'ziyane.tatiana@strathmore.edu';                     //SMTP username
-    $mail->Password   = 'zplw zddd zvvz ufxl';                               //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
-    //Recipients
-    $mail->setFrom('ziyane.tatiana@strathmore.edu', 'Tatiana ziyane');
-    $mail->addAddress('oeppapodcast@gmail.com', 'Oeppa podcats');     //Add a recipient
-    //$mail->addAddress('ellen@example.com');               //Name is optional
-    //$mail->addReplyTo('info@example.com', 'Information');
-    //$mail->addCC('cc@example.com');
-    //$mail->addBCC('bcc@example.com');
-
-    //Attachments
-    //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
-    //Content
-    $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Greetings from BBIT DevOps';
-    $mail->Body    = 'Welcome to <b>BBIT DevOps</b>! The journey of learning begins anew.';
-    //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-    $mail->send();
-    echo 'Message has been sent';
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
+// Call SendMail class (handles validation, greeting, and body automatically)
+$ObjSendMail->Send_Mail($conf, $mailCnt);

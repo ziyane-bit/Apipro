@@ -12,10 +12,13 @@ class SendMail{
 //Load Composer's autoloader (created by composer, not included with PHPMailer)
 require 'Plugins/PHPMailer/vendor/autoload.php';
 
-//Create an instance; passing `true` enables exceptions
+//Create an instance; passing 'true' enables exceptions
 $mail = new PHPMailer(true);
 
 try {
+        if (!filter_var($mailCnt['mail_to'], FILTER_VALIDATE_EMAIL)) {
+                throw new Exception("Invalid email address: " . $mailCnt['mail_to']);
+            }
     //Server settings
     $mail->SMTPDebug = SMTP::DEBUG_OFF;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
@@ -37,11 +40,26 @@ try {
     //Attachments
     //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
     //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-
+    
+    
+    // Greeting with user name
+    $userName = htmlspecialchars($mailCnt['name_to']);
+    $registrationLink = "https://domain.com/file.php?email=" . urlencode($mailCnt['mail_to']);
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = $mailCnt['subject'];
-    $mail->Body    = $mailCnt['body'];
+    $mail->Body    = "
+
+            <p>Howdy {$userName},</p>
+
+                <p>Thank you for joining <b>Klink</b>!</p>
+                <p>We are excited to have you on board.<br>
+                Moving money across East Africa is now fast, transparent, and secure.</p>
+                <p><a href='{$registrationLink}'>Click here</a> to complete your registration.</p>
+                <p>Together, we are Connecting Africa.</p>
+                <p>— Klink Team</p>
+    
+    ";
 
     $mail->send();
     echo 'Email has been sent';
